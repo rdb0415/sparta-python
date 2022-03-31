@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
+    <link href="https://fonts.googleapis.com/css?family=Stylish&amp;display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            font-family: 'Stylish', sans-serif;
+        }
+
+        .wrap {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .item-detail {
+            max-width: 500px;
+            height: ;
+        }
+
+        .item-img {
+            height: 100%;
+            padding: 10px 0;
+        }
+
+        .item-img > div {
+            text-indent: -9999px;
+            width: 100%;
+            height: 300px;
+            background-image: url("http://file.mk.co.kr/meet/neds/2018/02/image_readmed_2018_104518_15185111563205793.jpg");
+            background-position: center;
+            background-size: cover;
+        }
+
+        .item-desc {
+            margin: 20px 0;
+        }
+
+        .price {
+            font-size: 14px;
+        }
+
+        .btn {
+            display: block;
+            margin: 0 auto;
+            width: 100px;
+        }
+
+        .dollar {
+            margin-bottom: 20px;
+            color: blue;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            exchangeRate();
+        });
+
+        function exchangeRate() {
+            $('#nowRate').empty();
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/rate",
+                data: {},
+                success: function (response) {
+                    console.log(response)
+                    let dollar = response['rate'];
+                    $('#nowRate').text(dollar);
+                }
+            })
+        }
+
+        function orderSc() {
+            alert('주문이 완료되었습니다')
+        }
+
+    </script>
+</head>
+
+<body>
+<div class="wrap">
+    <section class="item-detail">
+        <h2 class="sr-only">상품이미지, 상품설명</h2>
+        <div class="item-img">
+            <div>상품이미지</div>
+        </div>
+        <div class="item-desc">
+            <h5 class="card-title">초코바 팝니다 <span class="price">가격: 1,500/개</span></h5>
+            <span class="item-desc">초콜릿 사이에 얇게 부순 비스킷과 웨이퍼를 넣어 바삭한 식감은 살리고 고소함과 달콤함을 함께 느낄수 있는 초코바!</span>
+        </div>
+
+        <div class="dollar">
+            달러-원 환율 : <span id="nowRate"> 1141</span>
+        </div>
+
+    </section>
+
+    <form>
+        <div class="form-group">
+            <label class="sr-only" for="inlineFormInputGroupUsername1">주문자이름</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">주문자이름</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername1">
+            </div>
+        </div>
+        <!-- //form-group -->
+
+        <div class="form-group">
+            <label class="sr-only" for="inlineFormInputGroupUsername2">수량</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">수량</div>
+                </div>
+                <select class="custom-select" id="inlineFormInputGroupUsername2">
+                    <option selected>--수량을 선택하세요--</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+        <!-- //form-group -->
+
+        <div class="form-group">
+            <label class="sr-only" for="inlineFormInputGroupUsername3">주소</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">주소</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername3">
+            </div>
+        </div>
+        <!-- //form-group -->
+
+        <div class="form-group">
+            <label class="sr-only" for="inlineFormInputGroupUsername4">전화번호</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">전화번호</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername4">
+            </div>
+        </div>
+        <!-- //form-group -->
+
+        <button type="submit" onclick="orderSc()" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script>
+    function orderSc() {
+        alert('주문이 완료되었습니다');
+    }
+</script>
+</body>
+
+</html>
